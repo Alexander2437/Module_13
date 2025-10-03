@@ -6,26 +6,16 @@ namespace Module_13_App
     {
         public static void Main(string[] args) 
         {
-        
-        }
+            // читаем весь файл с рабочего стола в строку текста
+            string text = File.ReadAllText("C:\\Users\\User\\Desktop\\1.txt");
 
-        public bool GetSortType(int[] array)
-        {
-            if (array.First() < array.Last())
-                return true;
-            return false;
-        }
+            // Сохраняем символы-разделители в массив
+            char[] delimiters = new char[] { ' ', '\r', '\n' };
 
-        static bool CheckAscending(int[] numbers)
-        {
-            //  используем цикл for для обхода массива
-            for (int i = 0; i < numbers.Length - 1; i++)
-            {
-                //  проверяем следующий элемент на предмет того, что он меньше предыдушего
-                if (numbers[i + 1] < numbers[i])
-                    return false;
-            }
-            return true;
+            // разбиваем нашу строку текста, используя ранее перечисленные символы-разделители
+            var words = text.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
+            // выводим количество
+            Console.WriteLine(words.Length);
         }
     }
 }
