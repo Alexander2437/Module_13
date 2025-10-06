@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Text;
 
 namespace Module_13_App
 {
@@ -6,16 +8,47 @@ namespace Module_13_App
     {
         public static void Main(string[] args) 
         {
-            // читаем весь файл с рабочего стола в строку текста
-            string text = File.ReadAllText("C:\\Users\\User\\Desktop\\1.txt");
+            ArrayList arrayExample = new ArrayList();
 
-            // Сохраняем символы-разделители в массив
-            char[] delimiters = new char[] { ' ', '\r', '\n' };
+            int[] nums = { 1, 2, 3 };
+            string[] strings = { "one", "two", "three" };
 
-            // разбиваем нашу строку текста, используя ранее перечисленные символы-разделители
-            var words = text.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-            // выводим количество
-            Console.WriteLine(words.Length);
+            arrayExample.AddRange(nums);
+            arrayExample.AddRange(strings);
+
+            var changedArr = GetSumOfElements(arrayExample);
+
+            foreach ( var element in changedArr )
+            {
+                Console.WriteLine(element);
+            }
+        }
+        
+        public static ArrayList GetSumOfElements(ArrayList input)
+        {
+            int intResult = 0;
+            //string stringResult = null;
+            StringBuilder stringResult = new StringBuilder();
+
+            foreach (var element in input)
+            { 
+                if (element is Int32)
+                {
+                    // var tempInt = (Int32)element;
+                    intResult += (Int32)element; 
+                }
+                else
+                {
+                    //var tempString = (String)element;
+                    //stringResult += (String)element + " ";
+                    stringResult.Append(element + " ");
+                }
+            }
+
+            //ArrayList result = [intResult, stringResult];
+            ArrayList result = [intResult, stringResult.ToString()];
+
+            return result;
         }
     }
 }
