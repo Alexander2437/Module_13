@@ -8,47 +8,38 @@ namespace Module_13_App
     {
         public static void Main(string[] args) 
         {
-            ArrayList arrayExample = new ArrayList();
-
-            int[] nums = { 1, 2, 3 };
-            string[] strings = { "one", "two", "three" };
-
-            arrayExample.AddRange(nums);
-            arrayExample.AddRange(strings);
-
-            var changedArr = GetSumOfElements(arrayExample);
-
-            foreach ( var element in changedArr )
+            var months = new List<string>()
             {
-                Console.WriteLine(element);
-            }
+               "Jan", "Feb", "Mar", "Apr", "May"
+            };
+
+            var missing = new ArrayList()
+            {
+               1, 2, 3, 5, "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+            };
+
+            GetMonths(months, missing);
         }
-        
-        public static ArrayList GetSumOfElements(ArrayList input)
-        {
-            int intResult = 0;
-            //string stringResult = null;
-            StringBuilder stringResult = new StringBuilder();
 
-            foreach (var element in input)
-            { 
-                if (element is Int32)
+        public static void GetMonths(List<string> firstCollection, ArrayList SecondCollection) 
+        {
+            List<string> stringItems = new List<string>();
+
+            foreach (var item in SecondCollection) 
+            {
+                if (item is string) 
                 {
-                    // var tempInt = (Int32)element;
-                    intResult += (Int32)element; 
-                }
-                else
-                {
-                    //var tempString = (String)element;
-                    //stringResult += (String)element + " ";
-                    stringResult.Append(element + " ");
+                    stringItems.Add((string)item);
                 }
             }
 
-            //ArrayList result = [intResult, stringResult];
-            ArrayList result = [intResult, stringResult.ToString()];
+            firstCollection.AddRange(stringItems);
 
-            return result;
+            foreach (var item in firstCollection) 
+            {
+                Console.Write(item + " ");
+            }
+            Console.WriteLine();
         }
     }
 }
