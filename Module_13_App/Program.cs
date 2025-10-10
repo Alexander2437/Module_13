@@ -1,45 +1,24 @@
 ﻿using System;
-using System.Collections;
-using System.Text;
+using System.Collections.Generic;
 
-namespace Module_13_App
+namespace HashSetTest
 {
     class Program
     {
-        public static void Main(string[] args) 
+        static void Main(string[] args)
         {
-            var months = new List<string>()
+            string sentence = "Подсчитайте, сколько уникальных символов в этом предложении, используя HashSet<T>, учитывая знаки препинания, но не учитывая пробелы в начале и в конце предложения.";
+            var characters = sentence.ToCharArray();
+            
+            var CharSet = new HashSet<char>();
+
+            foreach (char character in characters) 
             {
-               "Jan", "Feb", "Mar", "Apr", "May"
-            };
-
-            var missing = new ArrayList()
-            {
-               1, 2, 3, 5, "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-            };
-
-            GetMonths(months, missing);
-        }
-
-        public static void GetMonths(List<string> firstCollection, ArrayList SecondCollection) 
-        {
-            List<string> stringItems = new List<string>();
-
-            foreach (var item in SecondCollection) 
-            {
-                if (item is string) 
-                {
-                    stringItems.Add((string)item);
-                }
+                if (character != ' ')
+                    CharSet.Add(character);
             }
 
-            firstCollection.AddRange(stringItems);
-
-            foreach (var item in firstCollection) 
-            {
-                Console.Write(item + " ");
-            }
-            Console.WriteLine();
+            Console.WriteLine("Number of symbols: {0}", CharSet.Count);
         }
     }
 }
